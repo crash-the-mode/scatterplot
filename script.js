@@ -54,6 +54,9 @@ async function scatterPlot() {
 		.attr("cx", d => xScale(xAccessor(d)))
 		.attr("cy", d => yScale(yAccessor(d)))
 		.attr("r", 5)
+		.attr("class", "dot")
+		.attr("data-xvalue", d => xAccessor(d))
+		.attr("data-yvalue", d => yAccessor(d));
 
 	// Draw peripherals
 
@@ -62,14 +65,16 @@ async function scatterPlot() {
 
 	const xAxis = graph.append("g")
 		.call(xAxisGenerator)
-		.style("transform", `translateY(${dimensions.boundedHeight}px)`);
+		.style("transform", `translateY(${dimensions.boundedHeight}px)`)
+		.attr("id", "x-axis");
 
 	const yAxisGenerator = d3.axisLeft()
 		.scale(yScale)
 		.tickFormat(d3.timeFormat("%M:%S"));
 
 	const yAxis = graph.append("g")
-		.call(yAxisGenerator);
+		.call(yAxisGenerator)
+		.attr("id", "y-axis");
 }
 
 scatterPlot();
