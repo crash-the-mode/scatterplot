@@ -82,6 +82,34 @@ async function scatterPlot() {
 	const yAxis = graph.append("g")
 		.call(yAxisGenerator)
 		.attr("id", "y-axis");
+
+	const legendText = entireChart.append("g")
+		.attr("id", "legend")
+		.style("transform", `translate(${dimensions.width * 0.9}px, ${dimensions.height * 0.5}px)`);
+
+	const noDopeText = legendText.append("text")
+		.text("No doping allegations")
+		.style("text-anchor", "end");
+
+	const dopeAllegations = legendText.append("text")
+		.text("Riders with doping allegations")
+		.attr("y", 25)
+		.style("text-anchor", "end");
+
+	const dopeRects = entireChart.append("g")
+		.style("transform", `translate(${dimensions.width * 0.91}px, ${dimensions.height * 0.5}px`);
+
+	const noDopeRect = dopeRects.append("rect")
+		.attr("width", 20)
+		.attr("height", 20)
+		.attr("y", -15)
+		.attr("fill", "cornflowerblue")
+
+	const dopingRect = dopeRects.append("rect")
+		.attr("width", 20)
+		.attr("height", 20)
+		.attr("y", 10)
+		.attr("fill", "firebrick")
 }
 
 scatterPlot();
