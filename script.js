@@ -17,7 +17,7 @@ async function scatterPlot() {
 		width: height,
 		height: height,
 		margin: {
-			top: 10,
+			top: 100,
 			right: 10,
 			bottom: 50,
 			left: 50,
@@ -110,6 +110,21 @@ async function scatterPlot() {
 		.attr("height", 20)
 		.attr("y", 10)
 		.attr("fill", "firebrick")
+
+	const titleGroup = entireChart.append("g")
+		.style("transform", `translate(${dimensions.width * 0.5}px, ${dimensions.margin.top * 0.35}px)`)
+		.attr("id", "title");
+
+	const title = titleGroup.append("text")
+		.attr("id", "h1-title")
+		.html("Doping in Professional Bicycle Racing")
+		.attr("text-anchor", "middle");
+
+	const subTitle = titleGroup.append("text")
+		.attr("id", "h2-title")
+		.attr("y", 20)
+		.html("35 Fastest times up Alpe d'Huez")
+		.style("text-anchor", "middle");
 }
 
 scatterPlot();
