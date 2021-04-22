@@ -125,6 +125,33 @@ async function scatterPlot() {
 		.attr("y", 20)
 		.html("35 Fastest times up Alpe d'Huez")
 		.style("text-anchor", "middle");
+
+	// Interactions
+
+	graph.selectAll("circle")
+		.on("mouseenter", onMouseEnter)
+		.on("mouseleave", onMouseLeave);
+
+	const tooltip = d3.select("#tooltip");
+	function onMouseEnter(e, datum) {
+		const nameAccessor = d => d.Name;
+		const natAccessor = d => d.Nationality;
+		const yearAccessor = d => d.Year;
+		const timeAccessor = d => d.Time;
+
+		tooltip.attr("data-year", xAccessor(datum));
+		tooltip.select("#name-nat")
+			.text(`${nameAccessor(datum)}: ${natAccessor(datum)}`);
+		tooltip.select("#year-time")
+			.text(`Year: ${yearAccessor(datum)}, Time: ${timeAccessor(datum)}`);
+		tooltip.select("#doping-allegation")
+			.text(`${dopeAccessor(datum)}`);
+		tooltip.style("opacity", 1);
+	}
+	function onMouseLeave() {
+		tooltip.style("opacity", 0);
+	}
+
 }
 
 scatterPlot();
