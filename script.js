@@ -11,7 +11,7 @@ async function scatterPlot() {
 	const dopeAccessor = d => d.Doping;
 
 	// Create dimensions
-	const height = window.innerHeight * 0.9;
+	const height = 900;
 	const width = height;
 	let dimensions = {
 		width: height,
@@ -60,7 +60,9 @@ async function scatterPlot() {
 		.attr("data-yvalue", d => yAccessor(d))
 		.attr("fill", d => {
 			return dopeAccessor(d) === "" ? "cornflowerblue" : "firebrick";
-		});
+		})
+		.attr("stroke", "black")
+		.attr("stroke-width", 1);
 
 
 	// Draw peripherals
