@@ -8,6 +8,7 @@ async function scatterPlot() {
 	const xAccessor = d => yearParser(d.Year);
 	const timeParser = d3.timeParse("%M:%S");
 	const yAccessor = d => timeParser(d.Time);
+	const dopeAccessor = d => d.Doping;
 
 	// Create dimensions
 	const height = window.innerHeight * 0.9;
@@ -56,7 +57,11 @@ async function scatterPlot() {
 		.attr("r", 5)
 		.attr("class", "dot")
 		.attr("data-xvalue", d => xAccessor(d))
-		.attr("data-yvalue", d => yAccessor(d));
+		.attr("data-yvalue", d => yAccessor(d))
+		.attr("fill", d => {
+			return dopeAccessor(d) === "" ? "cornflowerblue" : "firebrick";
+		});
+
 
 	// Draw peripherals
 
