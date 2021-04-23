@@ -54,7 +54,7 @@ async function scatterPlot() {
 		.append("circle")
 		.attr("cx", d => xScale(xAccessor(d)))
 		.attr("cy", d => yScale(yAccessor(d)))
-		.attr("r", 5)
+		.attr("r", 7)
 		.attr("class", "dot")
 		.attr("data-xvalue", d => xAccessor(d))
 		.attr("data-yvalue", d => yAccessor(d))
@@ -122,7 +122,7 @@ async function scatterPlot() {
 
 	const subTitle = titleGroup.append("text")
 		.attr("id", "h2-title")
-		.attr("y", 20)
+		.attr("y", 25)
 		.html("35 Fastest times up Alpe d'Huez")
 		.style("text-anchor", "middle");
 
@@ -139,6 +139,9 @@ async function scatterPlot() {
 		const yearAccessor = d => d.Year;
 		const timeAccessor = d => d.Time;
 
+		const x = xScale(xAccessor(datum)) + dimensions.margin.left + 10;
+		const y = yScale(yAccessor(datum)) + dimensions.margin.top;
+
 		tooltip.attr("data-year", xAccessor(datum));
 		tooltip.select("#name-nat")
 			.text(`${nameAccessor(datum)}: ${natAccessor(datum)}`);
@@ -146,6 +149,7 @@ async function scatterPlot() {
 			.text(`Year: ${yearAccessor(datum)}, Time: ${timeAccessor(datum)}`);
 		tooltip.select("#doping-allegation")
 			.text(`${dopeAccessor(datum)}`);
+		tooltip.style("transform", `translate(${x}px, calc(-50% + ${y}px))`);
 		tooltip.style("opacity", 1);
 	}
 	function onMouseLeave() {
