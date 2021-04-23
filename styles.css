@@ -1,0 +1,26 @@
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: sans-serif;
+}
+
+main {
+	position: relative;
+}
+#h1-title {
+	font-size: 2em;
+}
+#h2-title {
+	font-size: 1.5em;
+}
+#tooltip {
+	opacity: 0;
+	background-color: darkgray;
+	border: 1px solid black;
+	border-radius: 12px;
+	padding: 0.25rem;
+	position: absolute;
+	z-index: 900;
+	pointer-events: none;
+}
